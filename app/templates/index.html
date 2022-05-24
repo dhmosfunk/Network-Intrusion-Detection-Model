@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>Intrusion Detection System | Demo</title>
+    <style>
+        .text-center {
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <h1 class="text-center mt-3">Intrusion Detection System | Demo</h1>
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#home"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#menu1"><i class="fas fa-upload"></i> Upload CSV</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#menu2"><i class="fas fa-check-circle"></i> Predict</a>
+            </li>
+        </ul>
+
+        <!-- MENU HOME -->
+        <div class="tab-content">
+            <div id="home" class="container tab-pane active"><br>
+                <h3>About this project</h3><hr>
+                <p>
+                    <h3>Data Analysis & Model Implementation</h3>
+                    Our Dataset has Columns(42) & Rows(148,517) <br>
+                    We train the model with training dataset → 125.973 Rows & 42 Columns <br>
+                    And for demo we will use the test data 22.544 Rows & 41 Columns → <b>(17% of the dataset)</b> <br>
+                    And for model implementation & back end we choose python
+
+                    <h3 class="mt-3">Model Implementation</h3>
+                    For model implementation we choose <b>Random Forest</b> algorithm
+
+                    <h3 class="mt-3">Model Results</h3>
+                    Precision: <b>Average(0.69)</b> <br>
+                    Recall: <b>Slightly better(0.82)</b><br>
+                    F1-score: <b>Average(0.75)</b><br><br>
+                    For us the higher the recall the better This means that the model is less prone to false positives.
+
+                
+                </p>
+
+               <small>This <a href="https://github.com/dhmosfunk/Network-Intrusion-Detection-Model" target="_blank"><i class="fab fa-github"></i> Github Repository</a> contains all necessary files for implementation of the Intrusion Detection System model. This project is for educational purposes only and is implemented for decision support system class.</small>
+            </div>
+
+
+
+            <!-- MENU UPLOAD -->
+            <div id="menu1" class="container tab-pane fade"><br>
+                <h3>Upload CSV</h3>
+                <form action="http://127.0.0.1:5000/uploader" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Upload a <b>.CSV</b> file to test the model!</label>
+                        <input class="form-control" type="file" id="formFile" name="file">
+                    </div>
+                    <input class="btn btn-primary" type="submit" value="Upload file!">
+                </form>
+            </div>
+
+
+            <!-- MENU PREDICT -->
+            <div id="menu2" class="container tab-pane fade"><br>
+
+                <h3>Select Dataset</h3>
+                <form action="http://127.0.0.1:5000/calc" method="POST">
+                    {% for file in files %}
+                    <input type="checkbox" id="dataset" name="dataset" value={{ file }}>
+                    <label for="dataset"> {{ file }}</label><br> {% endfor %}
+                    <input class="btn btn-primary mt-3" type="submit" value="Select file!">
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+</body>
+
+</html>

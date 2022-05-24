@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>Intrusion Detection System | Demo</title>
+    <style>
+        .text-center {
+            text-align: center;
+        }
+
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        
+        <h1 class="text-center mt-3">Intrusion Detection System | Demo</h1>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#menu1">Results</a>
+            </li>
+        </ul>
+
+
+        <!-- MENU HOME -->
+        <div class="tab-content">
+
+            <!-- MENU UPLOAD -->
+            <div id="menu1" class="container tab-pane active"><br>    
+                <table>
+                    <tr>
+                    <th style="background-color:rgb(129, 212, 103);">Label</th>
+                    <th style="background-color:rgb(129, 212, 103);">Count</th>
+                    </tr>
+                    {% for key, value in results %}
+                    <tr>
+                    <td>{{key}}</td>
+                    <td>{{value}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <a href="/" class=" text-center"><button type="button" class="btn btn-info mt-3">Get me back!</button></a>
+    </div>
+</body>
+
+</html>
